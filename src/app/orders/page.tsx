@@ -1,11 +1,16 @@
 "use client";
 import Order from "@/components/Order";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import React from "react";
 
 async function Orders() {
   const { data: session, status } = useSession();
-  const getOrders = await fetch("/api/fetchOrders");
+  const router = useRouter();
+  router.pathname;
+  const getOrders = await fetch(
+    "https://edith-store-e3tcpmoot-pb-rockz.vercel.app/api/fetchOrders"
+  );
   const orders = await getOrders.json();
 
   return (
