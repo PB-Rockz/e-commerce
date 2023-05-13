@@ -7,7 +7,6 @@ async function Orders() {
   const { data: session, status } = useSession();
   const getOrders = await fetch("/api/fetchOrders");
   const orders = await getOrders.json();
-  console.log(orders);
 
   return (
     <div>
