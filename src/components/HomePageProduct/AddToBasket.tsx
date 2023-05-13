@@ -2,6 +2,7 @@
 
 import { useDispatch } from "react-redux";
 import { addToBasket } from "@/slice/basketSlice";
+import { Rating } from "../../../typings";
 
 type Props = {
   title: string;

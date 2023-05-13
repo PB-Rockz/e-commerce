@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { StarIcon } from "@heroicons/react/24/solid";
 import AddToBasket from "./AddToBasket";
+import { Rating } from "../../../typings";
 
 type Props = {
   title: string;
