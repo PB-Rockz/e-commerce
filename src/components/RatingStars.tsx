@@ -13,9 +13,9 @@ function RatingStars({ rate, count }: Props) {
   for (let i = 0; i < fullStars; i++) {
     starIcons.push(<StarIcon key={`full-${i}`} />);
   }
-  console.log("Hi");
+  // console.log("Hi");
 
-  console.log(fullStars);
+  // console.log(fullStars);
 
   return <div>{starIcons}</div>;
 }
