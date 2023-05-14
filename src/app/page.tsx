@@ -9,15 +9,17 @@ export default async function Home() {
   //     revalidate: 60,
   //   },
   // }).then((res) => res.json());
-  const test = await fetch(`${server}/api/products`);
-  const testProducts = await test.json();
+  try {
+    const test = await fetch(`${server}/api/products`);
+    const testProducts = await test.json();
 
-  return (
-    <div>
-      <main className="max-w-screen-2xl">
-        <Banner />
-        <ProductFeed products={testProducts} />
-      </main>
-    </div>
-  );
+    return (
+      <div>
+        <main className="max-w-screen-2xl">
+          <Banner />
+          <ProductFeed products={testProducts} />
+        </main>
+      </div>
+    );
+  } catch (error) {}
 }
