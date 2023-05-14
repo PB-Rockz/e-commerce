@@ -4,6 +4,7 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import AddToBasket from "./AddToBasket";
 import { Rating } from "../../../typings";
 import RatingStars from "../RatingStars";
+import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 
 type Props = {
   title: string;
@@ -48,7 +49,7 @@ function Product({
         <p>${price.toFixed(2)}</p>
       </div>
       <div className="flex items-center space-x-2 -mt-4 mb-2">
-        <img loading="lazy" className="w-12" src="/prime-tag.png" alt="" />
+        <CheckBadgeIcon className="text-teal-500 w-4" />
         <p className="text-xs text-gray-500 mt-[6]">certified</p>
       </div>
       <AddToBasket

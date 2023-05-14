@@ -10,7 +10,7 @@ function HeaderSearchBox({}: Props) {
         type="text"
         name=""
         id=""
-        placeholder="Search amazon.in"
+        placeholder="Search Store..."
       />
       <MagnifyingGlassIcon className="h-12 p-4" />
     </div>

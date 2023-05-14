@@ -3,15 +3,19 @@ import Order from "@/components/Order";
 import { getServerSession } from "next-auth";
 import { server } from "@/utils/config";
 import { authOptions } from "@/utils/auth";
+import { useEffect } from "react";
+
 import { getSession } from "next-auth/react";
 
 export default async function Orders() {
+  // useEffect(() => {
+  //   // code to run only once when component mounts
+  // }, []);
   // const session = await getServerSession(authOptions);
-  try {
-    const session = await getSession();
+  const session = await getSession();
+  if (session) {
     const getOrders = await fetch(`${server}/api/get-orders`, {});
     const orders = await getOrders.json().catch();
-    // console.log(orders);
 
     return (
       <div>
@@ -39,5 +43,5 @@ export default async function Orders() {
         </main>
       </div>
     );
-  } catch (error) {}
+  }
 }
