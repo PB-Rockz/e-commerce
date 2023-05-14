@@ -2,12 +2,11 @@
 import Order from "@/components/Order";
 import { useSession } from "next-auth/react";
 import React from "react";
+import { server } from "@/utils/config";
 
-async function Orders() {
+export default async function Orders() {
   const { data: session, status } = useSession();
-  const getOrders = await fetch(
-    "https://edith-store-e3tcpmoot-pb-rockz.vercel.app/api/fetchOrders"
-  );
+  const getOrders = await fetch(`${server}/api/fetchOrders`);
   const orders = await getOrders.json();
 
   return (
@@ -37,5 +36,3 @@ async function Orders() {
     </div>
   );
 }
-
-export default Orders;

@@ -2,10 +2,6 @@ import "@/styles/globals.css";
 import Providers from "@/components/Providers";
 import Headers from "@/components/Header/Header";
 
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata = {
   title: "Amazon 2.0",
   description: "A Stripe powered E-Commerce Store",
