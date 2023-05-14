@@ -3,6 +3,7 @@ import React from "react";
 import { StarIcon } from "@heroicons/react/24/solid";
 import AddToBasket from "./AddToBasket";
 import { Rating } from "../../../typings";
+import RatingStars from "../RatingStars";
 
 type Props = {
   title: string;
@@ -39,7 +40,8 @@ function Product({
       </div>
       <h4>{title}</h4>
       <div className="flex">
-        <StarIcon className="h-5 text-yellow-500" />
+        {/* <StarIcon className="h-5 text-teal-500" /> */}
+        <RatingStars rate={rating.rate} count={rating.count} />
       </div>
       <p className="text-xs my-2 line-clamp-2">{description}</p>
       <div className="mb-5">

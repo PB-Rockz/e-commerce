@@ -4,7 +4,7 @@ type Props = {};
 
 function HeaderSearchBox({}: Props) {
   return (
-    <div className="hidden sm:flex flex-grow items-center h-10 cursor-pointer rounded-md bg-yellow-400 hover:bg-yellow-500">
+    <div className="hidden sm:flex flex-grow items-center h-10 cursor-pointer rounded-md bg-teal-400 hover:bg-teal-500">
       <input
         className="p-2 h-full w-6 flex-grow flex-shrink rounded-l-md focus:outline-none px-4"
         type="text"

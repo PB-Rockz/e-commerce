@@ -3,7 +3,7 @@ import Providers from "@/components/Providers";
 import Headers from "@/components/Header/Header";
 
 export const metadata = {
-  title: "Amazon 2.0",
+  title: "Edith Store",
   description: "A Stripe powered E-Commerce Store",
 };
 
