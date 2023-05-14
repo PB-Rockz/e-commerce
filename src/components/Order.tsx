@@ -1,3 +1,4 @@
+"use client";
 import { Timestamp } from "firebase/firestore";
 
 type Props = {
@@ -30,8 +31,13 @@ export default function Order({ id, amount, items, timestamp, images }: Props) {
       </div>
       <div className="p-5 sm:p10">
         <div className="flex space-x-6 overflow-x-auto">
-          {images.map((img) => (
-            <img src={img} alt="" className="h-20 object-contain sm:h-32" />
+          {images.map((img, i) => (
+            <img
+              key={i}
+              src={img}
+              alt=""
+              className="h-20 object-contain sm:h-32"
+            />
           ))}
         </div>
       </div>

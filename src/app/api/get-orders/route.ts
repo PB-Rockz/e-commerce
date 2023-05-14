@@ -7,25 +7,23 @@ import { authOptions } from "@/utils/auth";
 import Stripe from "stripe";
 import { getFirestore } from "firebase-admin/firestore";
 
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: "2022-11-15",
+});
+const app = !admin.apps.length
+  ? admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
+    })
+  : admin.app();
+const db = getFirestore();
 export async function GET(req: NextRequest) {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: "2022-11-15",
-  });
-  const app = !admin.apps.length
-    ? admin.initializeApp({
-        credential: admin.credential.cert(
-          serviceAccount as admin.ServiceAccount
-        ),
-      })
-    : admin.app();
-  const db = getFirestore();
   const session = await getServerSession(authOptions);
   if (!session) {
     return new Response("User not Logged In.");
   }
   if (session.user?.email) {
     // FIrebase DB
-    const stripeOrders = db
+    const stripeOrders = await db
       .collection("users")
       .doc(session.user.email)
       .collection("orders")
