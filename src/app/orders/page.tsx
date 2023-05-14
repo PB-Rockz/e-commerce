@@ -14,7 +14,11 @@ export default async function Orders() {
   // const session = await getServerSession(authOptions);
   const session = await getSession();
   if (session) {
-    const getOrders = await fetch(`${server}/api/get-orders`, {});
+    const getOrders = await fetch(`${server}/api/get-orders`, {
+      next: {
+        revalidate: 10,
+      },
+    });
     const orders = await getOrders.json().catch();
 
     return (
