@@ -1,7 +1,8 @@
-import { StarIcon } from "@heroicons/react/24/solid";
+import { CheckBadgeIcon, StarIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import BasketButtons from "./BasketButtons";
 import { Rating } from "../../../typings";
+import RatingStars from "../RatingStars";
 
 type Props = {
   title: string;
@@ -35,19 +36,13 @@ export default function CheckoutItem({
       <div className="col-span-3 mx-5">
         <p>{title}</p>
         <div className="flex">
-          {/* {new Array(Math.round(rating.rate)).map((_, i) => (
-            <StarIcon key={i} className="h-5 text-yellow-500" />
-          ))} */}
-          {Array(Math.round(rating.rate)).map((_, i) => (
-            <StarIcon key={i} className="h-5 text-yellow-500" />
-          ))}
-          <StarIcon className="h-5 text-yellow-500" />
+          <RatingStars rate={rating.rate} count={rating.count} />
         </div>
         <p className="text-xs my-2 line-clamp-3">{description}</p>
         <p>{"$ " + price.toFixed(2)}</p>
         {/* Prime */}
         <div className="flex items-center space-x-2">
-          <img loading="lazy" className="w-12" src="/prime-tag.png" alt="" />
+          <CheckBadgeIcon className="text-teal-500 w-4" />
           <p className="text-xs text-gray-500">FREE next day delivery</p>
         </div>
       </div>
