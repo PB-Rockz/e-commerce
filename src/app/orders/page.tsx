@@ -9,9 +9,7 @@ export default async function Orders() {
   // const session = await getServerSession(authOptions);
   try {
     const session = await getSession();
-    const getOrders = await fetch(`${server}/api/get-orders`, {
-      mode: "no-cors",
-    });
+    const getOrders = await fetch(`${server}/api/get-orders`, {});
     const orders = await getOrders.json().catch();
     // console.log(orders);
 
