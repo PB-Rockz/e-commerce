@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { TransformedItems } from "../../../../typings";
+import { server } from "@/utils/config";
 
 export async function POST(req: NextRequest) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -20,8 +21,8 @@ export async function POST(req: NextRequest) {
       // },
       line_items: transformedItems,
       mode: "payment",
-      success_url: `${process.env.HOST}/success`,
-      cancel_url: `${process.env.HOST}/checkout`,
+      success_url: `${server}/success`,
+      cancel_url: `${server}/checkout`,
       metadata: {
         email,
         images: JSON.stringify(
