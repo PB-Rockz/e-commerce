@@ -10,9 +10,9 @@ const app = !admin.apps.length
     })
   : admin.app();
 //   establish connection to stripe
-// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-//   apiVersion: "2022-11-15",
-// });
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: "2022-11-15",
+});
 
 async function fullFillOrder(session: Stripe.Checkout.Session) {
   return app
@@ -32,27 +32,27 @@ async function fullFillOrder(session: Stripe.Checkout.Session) {
 }
 export async function POST(request: NextRequest) {
   // const req = JSON.parse(JSON.stringify(request));
-  // const req = await request.json();
+  let event = await request.json();
   // console.log(req);
 
-  // const endpointSecret = process.env.STRIPE_SIGNING_SECRET!;
+  const endpointSecret = process.env.STRIPE_SIGNING_SECRET!;
 
-  // const sig = request.headers.get("stripe-signature")!;
+  const sig = request.headers.get("stripe-signature")!;
   // const requestBuffer = buffer(req);
   // // const buf = await buffer(req);
   // const payload = requestBuffer.toString();
   // // const rawBody = await getRawBody(req as any);
 
-  // let event: Stripe.Event;
-  // try {
-  //   // verify that event came from Stripe
-  //   event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
-  // } catch (error) {
-  //   console.log("ERROR");
-  // }
-  let event: Stripe.Event;
-  event = await request.json();
-
+  try {
+    // verify that event came from Stripe
+    event = stripe.webhooks.constructEvent(
+      await request.json(),
+      sig,
+      endpointSecret
+    );
+  } catch (error) {
+    console.log("⚠️  Webhook signature verification failed. ", error);
+  }
   //   Handle checkout session completed event
   if ((event.type = "checkout.session.completed")) {
     const session = event.data.object as Stripe.Checkout.Session;
