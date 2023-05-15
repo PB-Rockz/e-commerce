@@ -8,9 +8,9 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        "gradient-x": "gradient-x 5s ease infinite",
-        "gradient-y": "gradient-y 5s ease infinite",
-        "gradient-xy": "gradient-xy 5s ease infinite",
+        "gradient-x": "gradient-x 2s ease infinite",
+        "gradient-y": "gradient-y 2s ease infinite",
+        "gradient-xy": "gradient-xy 2s ease infinite",
       },
       keyframes: {
         "gradient-y": {
