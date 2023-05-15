@@ -39,6 +39,13 @@ interface CheckoutRequest extends Request {
     email: String;
   };
 }
+type FireStoreOrder = {
+  amount: number;
+  id: string;
+  images: string[];
+  items: Stripe.LineItem[];
+  timestamp: { _seconds: number; _nanoseconds: number };
+};
 interface WebhookSession
   extends Stripe.Event.Data.Object,
     Stripe.Checkout.Session {}

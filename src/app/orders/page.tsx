@@ -3,9 +3,12 @@ import Order from "@/components/Order";
 import { getServerSession } from "next-auth";
 import { server } from "@/utils/config";
 import { authOptions } from "@/utils/auth";
+import { Timestamp } from "firebase/firestore";
+
 import { useEffect } from "react";
 
 import { getSession } from "next-auth/react";
+import { FireStoreOrder } from "../../../typings";
 
 export default async function Orders() {
   // useEffect(() => {
@@ -19,8 +22,7 @@ export default async function Orders() {
         revalidate: 10,
       },
     });
-    const orders = await getOrders.json().catch();
-
+    const orders = (await getOrders.json()) as FireStoreOrder[];
     return (
       <div>
         <main className="max-w-screen-lg mx-auto p-10 bg-white">
@@ -33,13 +35,16 @@ export default async function Orders() {
             <h2>Please sign in to see your Orders.</h2>
           )}
           <div className="mt-5 space-y-4">
-            {orders.map(({ id, amount, items, timestamp, images }: any) => (
+            {orders.map(({ id, amount, items, timestamp, images }) => (
               <Order
                 key={id}
                 id={id}
                 amount={amount}
                 items={items}
-                timestamp={timestamp}
+                date={new Timestamp(
+                  timestamp._seconds,
+                  timestamp._nanoseconds
+                ).toDate()}
                 images={images}
               />
             ))}

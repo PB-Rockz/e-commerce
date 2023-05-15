@@ -31,25 +31,16 @@ async function fullFillOrder(session: Stripe.Checkout.Session) {
     });
 }
 export async function POST(request: NextRequest) {
-  // const req = JSON.parse(JSON.stringify(request));
   let event = await request.json();
   // console.log(req);
 
   const endpointSecret = process.env.STRIPE_SIGNING_SECRET!;
 
   const sig = request.headers.get("stripe-signature")!;
-  // const requestBuffer = buffer(req);
-  // // const buf = await buffer(req);
-  // const payload = requestBuffer.toString();
-  // // const rawBody = await getRawBody(req as any);
-
+  const bufferString = await request.json();
   try {
     // verify that event came from Stripe
-    event = stripe.webhooks.constructEvent(
-      await request.json(),
-      sig,
-      endpointSecret
-    );
+    event = stripe.webhooks.constructEvent(bufferString, sig, endpointSecret);
   } catch (error) {
     console.log("⚠️  Webhook signature verification failed. ", error);
   }

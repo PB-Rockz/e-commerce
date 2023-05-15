@@ -1,22 +1,21 @@
-"use client";
 import { Timestamp } from "firebase/firestore";
 
 type Props = {
   id: string;
   amount: number;
   items: any;
-  timestamp: Timestamp;
+  date: Date;
   images: string[];
 };
 
-export default function Order({ id, amount, items, timestamp, images }: Props) {
+export default function Order({ id, amount, items, date, images }: Props) {
   //   const date = new Date(timestamp.toString()).toISOString();
   return (
     <div className="relative border rounded-md">
       <div className="flex items-center space-x-10 p-5 bg-gray-100 text-sm text-gray-600">
         <div>
           <p className="font-bold text-xs">ORDERS PLACED</p>
-          <p>{timestamp.seconds}</p>
+          <p>{date.toLocaleDateString()}</p>
         </div>
         <div>
           <p className="font-bold text-xs">TOTAL</p>
